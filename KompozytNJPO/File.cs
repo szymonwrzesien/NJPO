@@ -13,12 +13,10 @@ namespace KompozytNJPO
         {
             this.name = name;
         }
-
         public void writeInfo()
         {
             Console.WriteLine(name);
-            
-            
+
         }
 
         public string getName()

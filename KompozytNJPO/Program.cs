@@ -55,9 +55,6 @@ namespace KompozytNJPO
 
 
                     }
-
-
-
                 }
                 if (command.StartsWith("txt "))
                 {
@@ -69,13 +66,9 @@ namespace KompozytNJPO
 
                 }
 
-
-
             }
           
-
         }
-
             private static void help()
         {
             Console.WriteLine("dir pokazuje strukture katalogu \ntxt tworzy nowy plik \nmd tworzy nowy katalog \ncd przechodzi do wybranego katalogu\nh wyświetl help ");
