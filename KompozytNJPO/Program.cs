@@ -8,7 +8,6 @@ namespace KompozytNJPO
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             Catalog mainFolder = new Catalog("głównyKatalog");
@@ -17,8 +16,15 @@ namespace KompozytNJPO
             help();
             for (; ;)
             {
-                Console.WriteLine("***********************************************");
-                handler.writePath(); 
+                Console.WriteLine(" ");
+                try
+                {
+                    handler.writePath();
+                }
+                catch(NullReferenceException e)
+                {
+                    Console.WriteLine("nie można przejść do nadrzędnego katalogu");
+                }
                 string command = Console.ReadLine();
 
                 if (command.Equals("h"))        //wyswietlanie helpa
@@ -38,32 +44,39 @@ namespace KompozytNJPO
                     handler.writeInfo();
                     Console.WriteLine("");
                 }
-                if (command.StartsWith("cd.."))
+                if (command.StartsWith("cd..")) // przechodzi do poprzedniego katalogu
                 {
+                    if (handler.getParent()!=null)
                     handler = handler.getParent();
                 }
-                if (command.StartsWith("cd "))
+                if (command.StartsWith("cd "))  //przechodzi do wybranego katalogu
                 {
                     string[] tab = command.Split(' ');
                     string nazwaFolderu = tab[1];
-                    foreach (Catalog item in handler.list)
+                    try
                     {
-                        if (nazwaFolderu.Equals(item.getName()))
+                        foreach (Catalog item in handler.list)
                         {
-                            handler = item;
+                            if (nazwaFolderu.Equals(item.getName()))
+                            {
+                                handler = item;
+                            }
+
+
                         }
-
-
                     }
+                  catch( System.InvalidCastException )
+                    {
+                        Console.WriteLine("plik txt - nie można przejść do katalogu");
+                    }
+ 
                 }
-                if (command.StartsWith("txt "))
+                if (command.StartsWith("txt ")) //tworzy plik tekstowy
                 {
                     string[] tab = command.Split(' ');
                     string FileName = tab[1];
                     File p = new File(FileName);
                     handler.add(p);
-
-
                 }
 
             }
@@ -71,7 +84,7 @@ namespace KompozytNJPO
         }
             private static void help()
         {
-            Console.WriteLine("dir pokazuje strukture katalogu \ntxt tworzy nowy plik \nmd tworzy nowy katalog \ncd przechodzi do wybranego katalogu\nh wyświetl help ");
+            Console.WriteLine("dir pokazuje strukture katalogu \ntxt tworzy nowy plik \nmd tworzy nowy katalog \ncd przechodzi do wybranego katalogu\ncd.. przechodzi do nadrzędnego katalogu\nh wyświetl help ");
           
         }
     }

@@ -8,7 +8,6 @@ namespace KompozytNJPO
 {
     interface Component
     {
-        
         void writeInfo();
 
         string getName();
