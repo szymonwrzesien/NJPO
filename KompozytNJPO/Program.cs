@@ -25,7 +25,7 @@ namespace KompozytNJPO
                 {
                     Console.WriteLine("nie można przejść do nadrzędnego katalogu");
                 }
-                string command = Console.ReadLine();
+                string command = Console.ReadLine();   
 
                 if (command.Equals("h"))        //wyswietlanie helpa
                     help();
