@@ -21,7 +21,7 @@ namespace KompozytNJPO
                 {
                     handler.writePath();
                 }
-                catch(NullReferenceException e)
+                catch(Exception )
                 {
                     Console.WriteLine("nie można przejść do nadrzędnego katalogu");
                 }
@@ -36,7 +36,6 @@ namespace KompozytNJPO
                     Catalog k = new Catalog(FolderName);
                     handler.add(k);
                     k.setParent(handler);
-
                 }
                 if (command.Equals("dir"))           //wyswietla strukture katalogu
                 {
@@ -61,8 +60,6 @@ namespace KompozytNJPO
                             {
                                 handler = item;
                             }
-
-
                         }
                     }
                   catch( System.InvalidCastException )
@@ -78,7 +75,6 @@ namespace KompozytNJPO
                     File p = new File(FileName);
                     handler.add(p);
                 }
-
             }
           
         }
