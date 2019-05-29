@@ -1,12 +1,13 @@
 ﻿using System;
 
-namespace Dekorator
+namespace DekoratorNJPO
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            AbstractElement elem = new DecorateP(new PlainTextDecorator(new PlainText("napis")));
+            elem.write();
         }
     }
 }
